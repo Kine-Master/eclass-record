@@ -1,0 +1,25 @@
+pkgname=eclass-record
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Offline class record / gradebook system for educators"
+arch=('x86_64')
+url="https://github.com/Kine-Master/eclass-record"
+license=('MIT')
+depends=('webkit2gtk-4.1' 'gtk3' 'libappindicator-gtk3' 'librsvg')
+makedepends=('rustup' 'nodejs' 'npm' 'pkgconf')
+source=()
+sha256sums=()
+
+build() {
+  cd "$srcdir/.."
+  npm ci
+  npm run build
+  cd src-tauri
+  cargo build --release
+}
+
+package() {
+  cd "$srcdir/../src-tauri"
+  install -Dm755 "target/release/e-class-record-system" "$pkgdir/usr/bin/e-class-record-system"
+  install -Dm644 "icons/128x128.png" "$pkgdir/usr/share/icons/hicolor/128x128/apps/e-class-record-system.png"
+}

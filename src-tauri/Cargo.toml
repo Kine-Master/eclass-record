@@ -1,0 +1,33 @@
+[package]
+name = "e-class-record-system"
+version = "0.1.0"
+description = "Offline class record / gradebook system for educators"
+authors = ["you"]
+edition = "2021"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rusqlite = { version = "0.31", features = ["bundled", "chrono"] }
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+rust_xlsxwriter = "0.77"
+printpdf = "0.7"
+directories = "5"
+anyhow = "1"
+
+[[bin]]
+name = "e-class-record-system"
+path = "src/main.rs"
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = "s"
+strip = true

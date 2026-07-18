@@ -1,0 +1,17 @@
+# Dependency directories
+node_modules/
+
+# Frontend build outputs
+dist/
+dist-tauri/
+
+# Rust/Tauri compiled artifacts
+src-tauri/target/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
